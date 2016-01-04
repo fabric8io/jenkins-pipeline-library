@@ -8,7 +8,7 @@ def call(body) {
     body()
 
     stage "waiting for ${config.name} ${config.prId} PR to merge"
-    node ('kubernetes'){
+    node ('swarm'){
       ws (config.name){
         authString = "${env.GITHUB_TOKEN}"
         def flow = new io.fabric8.Fabric8Commands()

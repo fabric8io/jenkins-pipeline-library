@@ -8,7 +8,7 @@ def call(body) {
 
     stage "promote ${config.project} docker images"
     for(int i = 0; i < config.images.size(); i++){
-      node ('kubernetes'){
+      node ('swarm'){
         ws ('tag'){
           image = config.images[i]
 
