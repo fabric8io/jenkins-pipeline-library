@@ -7,7 +7,7 @@ def call(body) {
 
   def project = 'kubernetes-client'
   stage "bump ${project} versions"
-  node ('kubernetes'){
+  node ('swarm'){
     ws (project){
       withEnv(["PATH+MAVEN=${tool 'maven-3.3.1'}/bin"]) {
 
