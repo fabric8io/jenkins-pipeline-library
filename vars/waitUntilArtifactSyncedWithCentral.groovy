@@ -5,13 +5,13 @@ def call(body) {
     body.delegate = config
     body()
 
+    def flow = new io.fabric8.Fabric8Commands()
+
     stage "waiting for ${config.artifact} ${config.version} artifacts to sync with central"
     node ('swarm'){
-      def flow = new io.fabric8.Fabric8Commands()
-      def newVersion = config.version
 
       waitUntil {
-        flow.getMavenCentralVersion(config.artifact) == newVersion
+        flow.getMavenCentralVersion(config.artifact) == config.version
       }
 
       message =  "${config.artifact} ${config.version} released and available in maven central"
