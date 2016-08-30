@@ -115,7 +115,7 @@ def call(body) {
                             ],
                             "env": [
                                 {
-                                    "name": "KUBERNETES_NAMESPACE",
+                                    "name": "${env.KUBERNETES_NAMESPACE}",
                                     "valueFrom": {
                                         "fieldRef": {
                                             "apiVersion": "v1",
