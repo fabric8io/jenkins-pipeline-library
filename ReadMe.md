@@ -3,7 +3,7 @@
 *NOTE* please use one of these repositories instead:
 
 * [fabric8-pipeline-library](https://github.com/fabric8io/fabric8-pipeline-library) provides a set of reusable [Jenkins Pipeline](https://jenkins.io/doc/book/pipeline/) steps and functions that you can reuse inside your `Jenkinsfile` via the [@Library annotation](https://github.com/fabric8io/fabric8-pipeline-library#how-to-use-this-library)
-* [fabric8-jenkinsfile-library](https://github.com/fabric8io/fabric8-jenkinsfile-library) provides a set of reusable `Jenkinsfile` files you can use on your projects. The `Jenkisnfiles` resue the [fabric8-pipeline-library](https://github.com/fabric8io/fabric8-pipeline-library and they are used by the [Developer Console](https://fabric8.io/guide/console.html) when creating projects or choosing pipelines.
+* [fabric8-jenkinsfile-library](https://github.com/fabric8io/fabric8-jenkinsfile-library) provides a set of reusable `Jenkinsfile` files you can use on your projects. The `Jenkinfile`s resue the [fabric8-pipeline-library](https://github.com/fabric8io/fabric8-pipeline-library and they are used by the [Developer Console](https://fabric8.io/guide/console.html) when creating projects or choosing pipelines.
 
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
