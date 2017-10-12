@@ -140,7 +140,7 @@ in the case of an aborted approval
 - runs `mvn deploy docker:build`
 - generates maven site and deploys it to the content repository
 ```groovy
-    mavenCanaryRelease{
+    mavenCanaryRelease {
       version = canaryVersion
     }
 ```
@@ -149,7 +149,7 @@ in the case of an aborted approval
 - lazily creates a test environment in kubernetes
 - runs maven integration tests in test environment
 ```groovy
-    mavenIntegrationTest{
+    mavenIntegrationTest {
       environment = 'Testing'
       failIfNoTests = 'false'
       itestPattern = '*KT'
@@ -160,7 +160,7 @@ in the case of an aborted approval
 - adds a [merge] comment to a github pull request
 - waits for GitHub pull request to be merged by an external CI system
 ```groovy
-    mergeAndWaitForPullRequest{
+    mergeAndWaitForPullRequest {
       project = 'fabric8/fabric8'
       pullRequestId = prId
     }
@@ -243,7 +243,7 @@ If CI fails and updates are required as a result of the dependency upgrade then
 - pipeline will wait until the CI passes before continuing
 
 ```groovy
-    waitUntilPullRequestMerged{
+    waitUntilPullRequestMerged {
       name = 'fabric8io/fabric8'
       prId = '1234'
     }
@@ -261,7 +261,7 @@ When a project is staged an array is returned and passed around functions furthe
 - __repoId__ the OSS Sonartype staging repository Id used to interact with Sonartype later on
 
 ```groovy
-    def stagedProject = stageProject{
+    def stagedProject = stageProject {
       project = 'fabric8io/ipaas-quickstarts'
       useGitTagForNextVersion = true
     }
@@ -290,7 +290,7 @@ Now that we don't store the next release version in the poms we need to figure i
 - waits for artifacts to be synced and available in maven central
 - sends chat notification when artifacts appear in maven central
 ```groovy
-    releaseProject{
+    releaseProject {
       stagedProject = project
       useGitTagForNextVersion = true
       helmPush = false
@@ -317,7 +317,7 @@ Now that we don't store the next release version in the poms we need to figure i
 - build docker images and stages them in the internal docker registry
 - stages extra images not built by docker-maven-plugin in the internal docker registry
 ```groovy
-    def stagedProject = stageProject{
+    def stagedProject = stageProject {
       project = 'fabric8io/ipaas-quickstarts'
       useGitTagForNextVersion = true
     }
@@ -325,7 +325,7 @@ Now that we don't store the next release version in the poms we need to figure i
 #### Tag Images
 - will pull external images which have been staged in the fabric8 docker registry and push the new tag to dockerhub
 ```groovy
-    tagImages{
+    tagImages {
       images = ['gogs','jenkins','taiga']
       tag = releaseVersion
     }
@@ -336,7 +336,7 @@ Now that we don't store the next release version in the poms we need to figure i
 - pushes the tag to the remote repository  
 
 ```groovy
-    gitTag{
+    gitTag {
       releaseVersion = '0.0.1'
     }
 ```
@@ -347,8 +347,8 @@ Deploys the staged fabric8 release to a remote OpenShift cluster
 __NOTE__ in order for images to be found by the the remote OpenShift instance it must be able to pull images from the staging docker registry.  Noting private networks and insecure-registry flags.
 
 ```groovy
-    node{
-      deployRemoteOpenShift{
+    node {
+      deployRemoteOpenShift {
         url = openshiftUrl
         domain = 'staging'
         stagingDockerRegistry = openshiftStagingDockerRegistryUrl
@@ -363,8 +363,8 @@ Deploys the staged fabric8 release to a remote Kubernetes cluster
 __NOTE__ in order for images to be found by the the remote OpenShift instance it must be able to pull images from the staging docker registry.  Noting private networks and insecure-registry flags.    
 
 ```groovy
-    node{
-      deployRemoteKubernetes{
+    node {
+      deployRemoteKubernetes {
         url = kubernetesUrl
         defaultNamespace = 'default'
         stagingDockerRegistry = kubernetesStagingDockerRegistryUrl
